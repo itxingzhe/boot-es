@@ -1,0 +1,1564 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.wyb.personal.bootes.dao.TbSpuManagePOMapper">
+  <resultMap id="BaseResultMap" type="cn.wyb.personal.bootes.model.po.TbSpuManagePO">
+    <id column="spu_id" jdbcType="INTEGER" property="spuId" />
+    <result column="spucode" jdbcType="VARCHAR" property="spucode" />
+    <result column="spuname" jdbcType="VARCHAR" property="spuname" />
+    <result column="propertys" jdbcType="VARCHAR" property="propertys" />
+    <result column="spu_title" jdbcType="VARCHAR" property="spuTitle" />
+    <result column="spu_video" jdbcType="VARCHAR" property="spuVideo" />
+    <result column="images_urls" jdbcType="VARCHAR" property="imagesUrls" />
+    <result column="spu_simple_desc" jdbcType="VARCHAR" property="spuSimpleDesc" />
+    <result column="spu_desc" jdbcType="VARCHAR" property="spuDesc" />
+    <result column="brand_id" jdbcType="INTEGER" property="brandId" />
+    <result column="up_desc" jdbcType="VARCHAR" property="upDesc" />
+    <result column="category_id" jdbcType="INTEGER" property="categoryId" />
+    <result column="down_desc" jdbcType="VARCHAR" property="downDesc" />
+    <result column="tag_id" jdbcType="INTEGER" property="tagId" />
+    <result column="list_start_time" jdbcType="TIMESTAMP" property="listStartTime" />
+    <result column="list_stop_time" jdbcType="TIMESTAMP" property="listStopTime" />
+    <result column="country_name" jdbcType="VARCHAR" property="countryName" />
+    <result column="min_price" jdbcType="BIGINT" property="minPrice" />
+    <result column="max_price" jdbcType="BIGINT" property="maxPrice" />
+    <result column="min_price_activity" jdbcType="BIGINT" property="minPriceActivity" />
+    <result column="max_price_activity" jdbcType="BIGINT" property="maxPriceActivity" />
+    <result column="is_gift" jdbcType="TINYINT" property="isGift" />
+    <result column="gmt_create" jdbcType="TIMESTAMP" property="gmtCreate" />
+    <result column="gmt_modified" jdbcType="TIMESTAMP" property="gmtModified" />
+    <result column="sales_channel" jdbcType="CHAR" property="salesChannel" />
+    <result column="spu_weight" jdbcType="INTEGER" property="spuWeight" />
+    <result column="spu_status" jdbcType="TINYINT" property="spuStatus" />
+    <result column="is_search" jdbcType="TINYINT" property="isSearch" />
+    <result column="original_price_max" jdbcType="BIGINT" property="originalPriceMax" />
+    <result column="original_price_min" jdbcType="BIGINT" property="originalPriceMin" />
+    <result column="warehouse_code" jdbcType="VARCHAR" property="warehouseCode" />
+    <result column="ferme" jdbcType="TINYINT" property="ferme" />
+    <result column="rate" jdbcType="VARCHAR" property="rate" />
+    <result column="all_sold_num" jdbcType="INTEGER" property="allSoldNum" />
+    <result column="all_stock_number" jdbcType="INTEGER" property="allStockNumber" />
+    <result column="all_stock_number_activity" jdbcType="INTEGER" property="allStockNumberActivity" />
+    <result column="member_role" jdbcType="CHAR" property="memberRole" />
+    <result column="hot_search" jdbcType="VARCHAR" property="hotSearch" />
+    <result column="is_all_sku_no_release" jdbcType="INTEGER" property="isAllSkuNoRelease" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    spu_id, spucode, spuname, propertys, spu_title, spu_video, images_urls, spu_simple_desc, 
+    spu_desc, brand_id, up_desc, category_id, down_desc, tag_id, list_start_time, list_stop_time, 
+    country_name, min_price, max_price, min_price_activity, max_price_activity, is_gift, 
+    gmt_create, gmt_modified, sales_channel, spu_weight, spu_status, is_search, original_price_max, 
+    original_price_min, warehouse_code, ferme, rate, all_sold_num, all_stock_number, 
+    all_stock_number_activity, member_role, hot_search, is_all_sku_no_release
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from tb_spu_manage
+    where spu_id = #{spuId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from tb_spu_manage
+    where spu_id = #{spuId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="cn.wyb.personal.bootes.model.po.TbSpuManagePO">
+    insert into tb_spu_manage (spu_id, spucode, spuname, 
+      propertys, spu_title, spu_video, 
+      images_urls, spu_simple_desc, spu_desc, 
+      brand_id, up_desc, category_id, 
+      down_desc, tag_id, list_start_time, 
+      list_stop_time, country_name, min_price, 
+      max_price, min_price_activity, max_price_activity, 
+      is_gift, gmt_create, gmt_modified, 
+      sales_channel, spu_weight, spu_status, 
+      is_search, original_price_max, original_price_min, 
+      warehouse_code, ferme, rate, 
+      all_sold_num, all_stock_number, all_stock_number_activity, 
+      member_role, hot_search, is_all_sku_no_release
+      )
+    values (#{spuId,jdbcType=INTEGER}, #{spucode,jdbcType=VARCHAR}, #{spuname,jdbcType=VARCHAR}, 
+      #{propertys,jdbcType=VARCHAR}, #{spuTitle,jdbcType=VARCHAR}, #{spuVideo,jdbcType=VARCHAR}, 
+      #{imagesUrls,jdbcType=VARCHAR}, #{spuSimpleDesc,jdbcType=VARCHAR}, #{spuDesc,jdbcType=VARCHAR}, 
+      #{brandId,jdbcType=INTEGER}, #{upDesc,jdbcType=VARCHAR}, #{categoryId,jdbcType=INTEGER}, 
+      #{downDesc,jdbcType=VARCHAR}, #{tagId,jdbcType=INTEGER}, #{listStartTime,jdbcType=TIMESTAMP}, 
+      #{listStopTime,jdbcType=TIMESTAMP}, #{countryName,jdbcType=VARCHAR}, #{minPrice,jdbcType=BIGINT}, 
+      #{maxPrice,jdbcType=BIGINT}, #{minPriceActivity,jdbcType=BIGINT}, #{maxPriceActivity,jdbcType=BIGINT}, 
+      #{isGift,jdbcType=TINYINT}, #{gmtCreate,jdbcType=TIMESTAMP}, #{gmtModified,jdbcType=TIMESTAMP}, 
+      #{salesChannel,jdbcType=CHAR}, #{spuWeight,jdbcType=INTEGER}, #{spuStatus,jdbcType=TINYINT}, 
+      #{isSearch,jdbcType=TINYINT}, #{originalPriceMax,jdbcType=BIGINT}, #{originalPriceMin,jdbcType=BIGINT}, 
+      #{warehouseCode,jdbcType=VARCHAR}, #{ferme,jdbcType=TINYINT}, #{rate,jdbcType=VARCHAR}, 
+      #{allSoldNum,jdbcType=INTEGER}, #{allStockNumber,jdbcType=INTEGER}, #{allStockNumberActivity,jdbcType=INTEGER}, 
+      #{memberRole,jdbcType=CHAR}, #{hotSearch,jdbcType=VARCHAR}, #{isAllSkuNoRelease,jdbcType=INTEGER}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="cn.wyb.personal.bootes.model.po.TbSpuManagePO">
+    insert into tb_spu_manage
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="spuId != null">
+        spu_id,
+      </if>
+      <if test="spucode != null">
+        spucode,
+      </if>
+      <if test="spuname != null">
+        spuname,
+      </if>
+      <if test="propertys != null">
+        propertys,
+      </if>
+      <if test="spuTitle != null">
+        spu_title,
+      </if>
+      <if test="spuVideo != null">
+        spu_video,
+      </if>
+      <if test="imagesUrls != null">
+        images_urls,
+      </if>
+      <if test="spuSimpleDesc != null">
+        spu_simple_desc,
+      </if>
+      <if test="spuDesc != null">
+        spu_desc,
+      </if>
+      <if test="brandId != null">
+        brand_id,
+      </if>
+      <if test="upDesc != null">
+        up_desc,
+      </if>
+      <if test="categoryId != null">
+        category_id,
+      </if>
+      <if test="downDesc != null">
+        down_desc,
+      </if>
+      <if test="tagId != null">
+        tag_id,
+      </if>
+      <if test="listStartTime != null">
+        list_start_time,
+      </if>
+      <if test="listStopTime != null">
+        list_stop_time,
+      </if>
+      <if test="countryName != null">
+        country_name,
+      </if>
+      <if test="minPrice != null">
+        min_price,
+      </if>
+      <if test="maxPrice != null">
+        max_price,
+      </if>
+      <if test="minPriceActivity != null">
+        min_price_activity,
+      </if>
+      <if test="maxPriceActivity != null">
+        max_price_activity,
+      </if>
+      <if test="isGift != null">
+        is_gift,
+      </if>
+      <if test="gmtCreate != null">
+        gmt_create,
+      </if>
+      <if test="gmtModified != null">
+        gmt_modified,
+      </if>
+      <if test="salesChannel != null">
+        sales_channel,
+      </if>
+      <if test="spuWeight != null">
+        spu_weight,
+      </if>
+      <if test="spuStatus != null">
+        spu_status,
+      </if>
+      <if test="isSearch != null">
+        is_search,
+      </if>
+      <if test="originalPriceMax != null">
+        original_price_max,
+      </if>
+      <if test="originalPriceMin != null">
+        original_price_min,
+      </if>
+      <if test="warehouseCode != null">
+        warehouse_code,
+      </if>
+      <if test="ferme != null">
+        ferme,
+      </if>
+      <if test="rate != null">
+        rate,
+      </if>
+      <if test="allSoldNum != null">
+        all_sold_num,
+      </if>
+      <if test="allStockNumber != null">
+        all_stock_number,
+      </if>
+      <if test="allStockNumberActivity != null">
+        all_stock_number_activity,
+      </if>
+      <if test="memberRole != null">
+        member_role,
+      </if>
+      <if test="hotSearch != null">
+        hot_search,
+      </if>
+      <if test="isAllSkuNoRelease != null">
+        is_all_sku_no_release,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="spuId != null">
+        #{spuId,jdbcType=INTEGER},
+      </if>
+      <if test="spucode != null">
+        #{spucode,jdbcType=VARCHAR},
+      </if>
+      <if test="spuname != null">
+        #{spuname,jdbcType=VARCHAR},
+      </if>
+      <if test="propertys != null">
+        #{propertys,jdbcType=VARCHAR},
+      </if>
+      <if test="spuTitle != null">
+        #{spuTitle,jdbcType=VARCHAR},
+      </if>
+      <if test="spuVideo != null">
+        #{spuVideo,jdbcType=VARCHAR},
+      </if>
+      <if test="imagesUrls != null">
+        #{imagesUrls,jdbcType=VARCHAR},
+      </if>
+      <if test="spuSimpleDesc != null">
+        #{spuSimpleDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="spuDesc != null">
+        #{spuDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="brandId != null">
+        #{brandId,jdbcType=INTEGER},
+      </if>
+      <if test="upDesc != null">
+        #{upDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="categoryId != null">
+        #{categoryId,jdbcType=INTEGER},
+      </if>
+      <if test="downDesc != null">
+        #{downDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="tagId != null">
+        #{tagId,jdbcType=INTEGER},
+      </if>
+      <if test="listStartTime != null">
+        #{listStartTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="listStopTime != null">
+        #{listStopTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="countryName != null">
+        #{countryName,jdbcType=VARCHAR},
+      </if>
+      <if test="minPrice != null">
+        #{minPrice,jdbcType=BIGINT},
+      </if>
+      <if test="maxPrice != null">
+        #{maxPrice,jdbcType=BIGINT},
+      </if>
+      <if test="minPriceActivity != null">
+        #{minPriceActivity,jdbcType=BIGINT},
+      </if>
+      <if test="maxPriceActivity != null">
+        #{maxPriceActivity,jdbcType=BIGINT},
+      </if>
+      <if test="isGift != null">
+        #{isGift,jdbcType=TINYINT},
+      </if>
+      <if test="gmtCreate != null">
+        #{gmtCreate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="gmtModified != null">
+        #{gmtModified,jdbcType=TIMESTAMP},
+      </if>
+      <if test="salesChannel != null">
+        #{salesChannel,jdbcType=CHAR},
+      </if>
+      <if test="spuWeight != null">
+        #{spuWeight,jdbcType=INTEGER},
+      </if>
+      <if test="spuStatus != null">
+        #{spuStatus,jdbcType=TINYINT},
+      </if>
+      <if test="isSearch != null">
+        #{isSearch,jdbcType=TINYINT},
+      </if>
+      <if test="originalPriceMax != null">
+        #{originalPriceMax,jdbcType=BIGINT},
+      </if>
+      <if test="originalPriceMin != null">
+        #{originalPriceMin,jdbcType=BIGINT},
+      </if>
+      <if test="warehouseCode != null">
+        #{warehouseCode,jdbcType=VARCHAR},
+      </if>
+      <if test="ferme != null">
+        #{ferme,jdbcType=TINYINT},
+      </if>
+      <if test="rate != null">
+        #{rate,jdbcType=VARCHAR},
+      </if>
+      <if test="allSoldNum != null">
+        #{allSoldNum,jdbcType=INTEGER},
+      </if>
+      <if test="allStockNumber != null">
+        #{allStockNumber,jdbcType=INTEGER},
+      </if>
+      <if test="allStockNumberActivity != null">
+        #{allStockNumberActivity,jdbcType=INTEGER},
+      </if>
+      <if test="memberRole != null">
+        #{memberRole,jdbcType=CHAR},
+      </if>
+      <if test="hotSearch != null">
+        #{hotSearch,jdbcType=VARCHAR},
+      </if>
+      <if test="isAllSkuNoRelease != null">
+        #{isAllSkuNoRelease,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="cn.wyb.personal.bootes.model.po.TbSpuManagePO">
+    update tb_spu_manage
+    <set>
+      <if test="spucode != null">
+        spucode = #{spucode,jdbcType=VARCHAR},
+      </if>
+      <if test="spuname != null">
+        spuname = #{spuname,jdbcType=VARCHAR},
+      </if>
+      <if test="propertys != null">
+        propertys = #{propertys,jdbcType=VARCHAR},
+      </if>
+      <if test="spuTitle != null">
+        spu_title = #{spuTitle,jdbcType=VARCHAR},
+      </if>
+      <if test="spuVideo != null">
+        spu_video = #{spuVideo,jdbcType=VARCHAR},
+      </if>
+      <if test="imagesUrls != null">
+        images_urls = #{imagesUrls,jdbcType=VARCHAR},
+      </if>
+      <if test="spuSimpleDesc != null">
+        spu_simple_desc = #{spuSimpleDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="spuDesc != null">
+        spu_desc = #{spuDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="brandId != null">
+        brand_id = #{brandId,jdbcType=INTEGER},
+      </if>
+      <if test="upDesc != null">
+        up_desc = #{upDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="categoryId != null">
+        category_id = #{categoryId,jdbcType=INTEGER},
+      </if>
+      <if test="downDesc != null">
+        down_desc = #{downDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="tagId != null">
+        tag_id = #{tagId,jdbcType=INTEGER},
+      </if>
+      <if test="listStartTime != null">
+        list_start_time = #{listStartTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="listStopTime != null">
+        list_stop_time = #{listStopTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="countryName != null">
+        country_name = #{countryName,jdbcType=VARCHAR},
+      </if>
+      <if test="minPrice != null">
+        min_price = #{minPrice,jdbcType=BIGINT},
+      </if>
+      <if test="maxPrice != null">
+        max_price = #{maxPrice,jdbcType=BIGINT},
+      </if>
+      <if test="minPriceActivity != null">
+        min_price_activity = #{minPriceActivity,jdbcType=BIGINT},
+      </if>
+      <if test="maxPriceActivity != null">
+        max_price_activity = #{maxPriceActivity,jdbcType=BIGINT},
+      </if>
+      <if test="isGift != null">
+        is_gift = #{isGift,jdbcType=TINYINT},
+      </if>
+      <if test="gmtCreate != null">
+        gmt_create = #{gmtCreate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="gmtModified != null">
+        gmt_modified = #{gmtModified,jdbcType=TIMESTAMP},
+      </if>
+      <if test="salesChannel != null">
+        sales_channel = #{salesChannel,jdbcType=CHAR},
+      </if>
+      <if test="spuWeight != null">
+        spu_weight = #{spuWeight,jdbcType=INTEGER},
+      </if>
+      <if test="spuStatus != null">
+        spu_status = #{spuStatus,jdbcType=TINYINT},
+      </if>
+      <if test="isSearch != null">
+        is_search = #{isSearch,jdbcType=TINYINT},
+      </if>
+      <if test="originalPriceMax != null">
+        original_price_max = #{originalPriceMax,jdbcType=BIGINT},
+      </if>
+      <if test="originalPriceMin != null">
+        original_price_min = #{originalPriceMin,jdbcType=BIGINT},
+      </if>
+      <if test="warehouseCode != null">
+        warehouse_code = #{warehouseCode,jdbcType=VARCHAR},
+      </if>
+      <if test="ferme != null">
+        ferme = #{ferme,jdbcType=TINYINT},
+      </if>
+      <if test="rate != null">
+        rate = #{rate,jdbcType=VARCHAR},
+      </if>
+      <if test="allSoldNum != null">
+        all_sold_num = #{allSoldNum,jdbcType=INTEGER},
+      </if>
+      <if test="allStockNumber != null">
+        all_stock_number = #{allStockNumber,jdbcType=INTEGER},
+      </if>
+      <if test="allStockNumberActivity != null">
+        all_stock_number_activity = #{allStockNumberActivity,jdbcType=INTEGER},
+      </if>
+      <if test="memberRole != null">
+        member_role = #{memberRole,jdbcType=CHAR},
+      </if>
+      <if test="hotSearch != null">
+        hot_search = #{hotSearch,jdbcType=VARCHAR},
+      </if>
+      <if test="isAllSkuNoRelease != null">
+        is_all_sku_no_release = #{isAllSkuNoRelease,jdbcType=INTEGER},
+      </if>
+    </set>
+    where spu_id = #{spuId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="cn.wyb.personal.bootes.model.po.TbSpuManagePO">
+    update tb_spu_manage
+    set spucode = #{spucode,jdbcType=VARCHAR},
+      spuname = #{spuname,jdbcType=VARCHAR},
+      propertys = #{propertys,jdbcType=VARCHAR},
+      spu_title = #{spuTitle,jdbcType=VARCHAR},
+      spu_video = #{spuVideo,jdbcType=VARCHAR},
+      images_urls = #{imagesUrls,jdbcType=VARCHAR},
+      spu_simple_desc = #{spuSimpleDesc,jdbcType=VARCHAR},
+      spu_desc = #{spuDesc,jdbcType=VARCHAR},
+      brand_id = #{brandId,jdbcType=INTEGER},
+      up_desc = #{upDesc,jdbcType=VARCHAR},
+      category_id = #{categoryId,jdbcType=INTEGER},
+      down_desc = #{downDesc,jdbcType=VARCHAR},
+      tag_id = #{tagId,jdbcType=INTEGER},
+      list_start_time = #{listStartTime,jdbcType=TIMESTAMP},
+      list_stop_time = #{listStopTime,jdbcType=TIMESTAMP},
+      country_name = #{countryName,jdbcType=VARCHAR},
+      min_price = #{minPrice,jdbcType=BIGINT},
+      max_price = #{maxPrice,jdbcType=BIGINT},
+      min_price_activity = #{minPriceActivity,jdbcType=BIGINT},
+      max_price_activity = #{maxPriceActivity,jdbcType=BIGINT},
+      is_gift = #{isGift,jdbcType=TINYINT},
+      gmt_create = #{gmtCreate,jdbcType=TIMESTAMP},
+      gmt_modified = #{gmtModified,jdbcType=TIMESTAMP},
+      sales_channel = #{salesChannel,jdbcType=CHAR},
+      spu_weight = #{spuWeight,jdbcType=INTEGER},
+      spu_status = #{spuStatus,jdbcType=TINYINT},
+      is_search = #{isSearch,jdbcType=TINYINT},
+      original_price_max = #{originalPriceMax,jdbcType=BIGINT},
+      original_price_min = #{originalPriceMin,jdbcType=BIGINT},
+      warehouse_code = #{warehouseCode,jdbcType=VARCHAR},
+      ferme = #{ferme,jdbcType=TINYINT},
+      rate = #{rate,jdbcType=VARCHAR},
+      all_sold_num = #{allSoldNum,jdbcType=INTEGER},
+      all_stock_number = #{allStockNumber,jdbcType=INTEGER},
+      all_stock_number_activity = #{allStockNumberActivity,jdbcType=INTEGER},
+      member_role = #{memberRole,jdbcType=CHAR},
+      hot_search = #{hotSearch,jdbcType=VARCHAR},
+      is_all_sku_no_release = #{isAllSkuNoRelease,jdbcType=INTEGER}
+    where spu_id = #{spuId,jdbcType=INTEGER}
+  </update>
+  <resultMap id="BaseResultMap" type="cn.wyb.personal.bootes.model.po.TbSpuManagePO">
+    <id column="spu_id" jdbcType="INTEGER" property="spuId" />
+    <result column="spucode" jdbcType="VARCHAR" property="spucode" />
+    <result column="spuname" jdbcType="VARCHAR" property="spuname" />
+    <result column="spu_title" jdbcType="VARCHAR" property="spuTitle" />
+    <result column="spu_video" jdbcType="VARCHAR" property="spuVideo" />
+    <result column="brand_id" jdbcType="INTEGER" property="brandId" />
+    <result column="category_id" jdbcType="INTEGER" property="categoryId" />
+    <result column="tag_id" jdbcType="INTEGER" property="tagId" />
+    <result column="list_start_time" jdbcType="TIMESTAMP" property="listStartTime" />
+    <result column="list_stop_time" jdbcType="TIMESTAMP" property="listStopTime" />
+    <result column="country_name" jdbcType="VARCHAR" property="countryName" />
+    <result column="min_price" jdbcType="BIGINT" property="minPrice" />
+    <result column="max_price" jdbcType="BIGINT" property="maxPrice" />
+    <result column="min_price_activity" jdbcType="BIGINT" property="minPriceActivity" />
+    <result column="max_price_activity" jdbcType="BIGINT" property="maxPriceActivity" />
+    <result column="is_gift" jdbcType="TINYINT" property="isGift" />
+    <result column="gmt_create" jdbcType="TIMESTAMP" property="gmtCreate" />
+    <result column="gmt_modified" jdbcType="TIMESTAMP" property="gmtModified" />
+    <result column="sales_channel" jdbcType="CHAR" property="salesChannel" />
+    <result column="spu_weight" jdbcType="INTEGER" property="spuWeight" />
+    <result column="spu_status" jdbcType="TINYINT" property="spuStatus" />
+    <result column="is_search" jdbcType="TINYINT" property="isSearch" />
+    <result column="original_price_max" jdbcType="BIGINT" property="originalPriceMax" />
+    <result column="original_price_min" jdbcType="BIGINT" property="originalPriceMin" />
+    <result column="warehouse_code" jdbcType="VARCHAR" property="warehouseCode" />
+    <result column="ferme" jdbcType="TINYINT" property="ferme" />
+    <result column="rate" jdbcType="VARCHAR" property="rate" />
+    <result column="all_sold_num" jdbcType="INTEGER" property="allSoldNum" />
+    <result column="all_stock_number" jdbcType="INTEGER" property="allStockNumber" />
+    <result column="all_stock_number_activity" jdbcType="INTEGER" property="allStockNumberActivity" />
+    <result column="member_role" jdbcType="CHAR" property="memberRole" />
+    <result column="hot_search" jdbcType="VARCHAR" property="hotSearch" />
+    <result column="is_all_sku_no_release" jdbcType="INTEGER" property="isAllSkuNoRelease" />
+  </resultMap>
+  <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="cn.wyb.personal.bootes.model.po.TbSpuManagePOWithBLOBs">
+    <result column="propertys" jdbcType="LONGVARCHAR" property="propertys" />
+    <result column="images_urls" jdbcType="LONGVARCHAR" property="imagesUrls" />
+    <result column="spu_simple_desc" jdbcType="LONGVARCHAR" property="spuSimpleDesc" />
+    <result column="spu_desc" jdbcType="LONGVARCHAR" property="spuDesc" />
+    <result column="up_desc" jdbcType="LONGVARCHAR" property="upDesc" />
+    <result column="down_desc" jdbcType="LONGVARCHAR" property="downDesc" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    spu_id, spucode, spuname, spu_title, spu_video, brand_id, category_id, tag_id, list_start_time, 
+    list_stop_time, country_name, min_price, max_price, min_price_activity, max_price_activity, 
+    is_gift, gmt_create, gmt_modified, sales_channel, spu_weight, spu_status, is_search, 
+    original_price_max, original_price_min, warehouse_code, ferme, rate, all_sold_num, 
+    all_stock_number, all_stock_number_activity, member_role, hot_search, is_all_sku_no_release
+  </sql>
+  <sql id="Blob_Column_List">
+    propertys, images_urls, spu_simple_desc, spu_desc, up_desc, down_desc
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="ResultMapWithBLOBs">
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from tb_spu_manage
+    where spu_id = #{spuId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from tb_spu_manage
+    where spu_id = #{spuId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="cn.wyb.personal.bootes.model.po.TbSpuManagePOWithBLOBs">
+    insert into tb_spu_manage (spu_id, spucode, spuname, 
+      spu_title, spu_video, brand_id, 
+      category_id, tag_id, list_start_time, 
+      list_stop_time, country_name, min_price, 
+      max_price, min_price_activity, max_price_activity, 
+      is_gift, gmt_create, gmt_modified, 
+      sales_channel, spu_weight, spu_status, 
+      is_search, original_price_max, original_price_min, 
+      warehouse_code, ferme, rate, 
+      all_sold_num, all_stock_number, all_stock_number_activity, 
+      member_role, hot_search, is_all_sku_no_release, 
+      propertys, images_urls, spu_simple_desc, 
+      spu_desc, up_desc, down_desc
+      )
+    values (#{spuId,jdbcType=INTEGER}, #{spucode,jdbcType=VARCHAR}, #{spuname,jdbcType=VARCHAR}, 
+      #{spuTitle,jdbcType=VARCHAR}, #{spuVideo,jdbcType=VARCHAR}, #{brandId,jdbcType=INTEGER}, 
+      #{categoryId,jdbcType=INTEGER}, #{tagId,jdbcType=INTEGER}, #{listStartTime,jdbcType=TIMESTAMP}, 
+      #{listStopTime,jdbcType=TIMESTAMP}, #{countryName,jdbcType=VARCHAR}, #{minPrice,jdbcType=BIGINT}, 
+      #{maxPrice,jdbcType=BIGINT}, #{minPriceActivity,jdbcType=BIGINT}, #{maxPriceActivity,jdbcType=BIGINT}, 
+      #{isGift,jdbcType=TINYINT}, #{gmtCreate,jdbcType=TIMESTAMP}, #{gmtModified,jdbcType=TIMESTAMP}, 
+      #{salesChannel,jdbcType=CHAR}, #{spuWeight,jdbcType=INTEGER}, #{spuStatus,jdbcType=TINYINT}, 
+      #{isSearch,jdbcType=TINYINT}, #{originalPriceMax,jdbcType=BIGINT}, #{originalPriceMin,jdbcType=BIGINT}, 
+      #{warehouseCode,jdbcType=VARCHAR}, #{ferme,jdbcType=TINYINT}, #{rate,jdbcType=VARCHAR}, 
+      #{allSoldNum,jdbcType=INTEGER}, #{allStockNumber,jdbcType=INTEGER}, #{allStockNumberActivity,jdbcType=INTEGER}, 
+      #{memberRole,jdbcType=CHAR}, #{hotSearch,jdbcType=VARCHAR}, #{isAllSkuNoRelease,jdbcType=INTEGER}, 
+      #{propertys,jdbcType=LONGVARCHAR}, #{imagesUrls,jdbcType=LONGVARCHAR}, #{spuSimpleDesc,jdbcType=LONGVARCHAR}, 
+      #{spuDesc,jdbcType=LONGVARCHAR}, #{upDesc,jdbcType=LONGVARCHAR}, #{downDesc,jdbcType=LONGVARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="cn.wyb.personal.bootes.model.po.TbSpuManagePOWithBLOBs">
+    insert into tb_spu_manage
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="spuId != null">
+        spu_id,
+      </if>
+      <if test="spucode != null">
+        spucode,
+      </if>
+      <if test="spuname != null">
+        spuname,
+      </if>
+      <if test="spuTitle != null">
+        spu_title,
+      </if>
+      <if test="spuVideo != null">
+        spu_video,
+      </if>
+      <if test="brandId != null">
+        brand_id,
+      </if>
+      <if test="categoryId != null">
+        category_id,
+      </if>
+      <if test="tagId != null">
+        tag_id,
+      </if>
+      <if test="listStartTime != null">
+        list_start_time,
+      </if>
+      <if test="listStopTime != null">
+        list_stop_time,
+      </if>
+      <if test="countryName != null">
+        country_name,
+      </if>
+      <if test="minPrice != null">
+        min_price,
+      </if>
+      <if test="maxPrice != null">
+        max_price,
+      </if>
+      <if test="minPriceActivity != null">
+        min_price_activity,
+      </if>
+      <if test="maxPriceActivity != null">
+        max_price_activity,
+      </if>
+      <if test="isGift != null">
+        is_gift,
+      </if>
+      <if test="gmtCreate != null">
+        gmt_create,
+      </if>
+      <if test="gmtModified != null">
+        gmt_modified,
+      </if>
+      <if test="salesChannel != null">
+        sales_channel,
+      </if>
+      <if test="spuWeight != null">
+        spu_weight,
+      </if>
+      <if test="spuStatus != null">
+        spu_status,
+      </if>
+      <if test="isSearch != null">
+        is_search,
+      </if>
+      <if test="originalPriceMax != null">
+        original_price_max,
+      </if>
+      <if test="originalPriceMin != null">
+        original_price_min,
+      </if>
+      <if test="warehouseCode != null">
+        warehouse_code,
+      </if>
+      <if test="ferme != null">
+        ferme,
+      </if>
+      <if test="rate != null">
+        rate,
+      </if>
+      <if test="allSoldNum != null">
+        all_sold_num,
+      </if>
+      <if test="allStockNumber != null">
+        all_stock_number,
+      </if>
+      <if test="allStockNumberActivity != null">
+        all_stock_number_activity,
+      </if>
+      <if test="memberRole != null">
+        member_role,
+      </if>
+      <if test="hotSearch != null">
+        hot_search,
+      </if>
+      <if test="isAllSkuNoRelease != null">
+        is_all_sku_no_release,
+      </if>
+      <if test="propertys != null">
+        propertys,
+      </if>
+      <if test="imagesUrls != null">
+        images_urls,
+      </if>
+      <if test="spuSimpleDesc != null">
+        spu_simple_desc,
+      </if>
+      <if test="spuDesc != null">
+        spu_desc,
+      </if>
+      <if test="upDesc != null">
+        up_desc,
+      </if>
+      <if test="downDesc != null">
+        down_desc,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="spuId != null">
+        #{spuId,jdbcType=INTEGER},
+      </if>
+      <if test="spucode != null">
+        #{spucode,jdbcType=VARCHAR},
+      </if>
+      <if test="spuname != null">
+        #{spuname,jdbcType=VARCHAR},
+      </if>
+      <if test="spuTitle != null">
+        #{spuTitle,jdbcType=VARCHAR},
+      </if>
+      <if test="spuVideo != null">
+        #{spuVideo,jdbcType=VARCHAR},
+      </if>
+      <if test="brandId != null">
+        #{brandId,jdbcType=INTEGER},
+      </if>
+      <if test="categoryId != null">
+        #{categoryId,jdbcType=INTEGER},
+      </if>
+      <if test="tagId != null">
+        #{tagId,jdbcType=INTEGER},
+      </if>
+      <if test="listStartTime != null">
+        #{listStartTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="listStopTime != null">
+        #{listStopTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="countryName != null">
+        #{countryName,jdbcType=VARCHAR},
+      </if>
+      <if test="minPrice != null">
+        #{minPrice,jdbcType=BIGINT},
+      </if>
+      <if test="maxPrice != null">
+        #{maxPrice,jdbcType=BIGINT},
+      </if>
+      <if test="minPriceActivity != null">
+        #{minPriceActivity,jdbcType=BIGINT},
+      </if>
+      <if test="maxPriceActivity != null">
+        #{maxPriceActivity,jdbcType=BIGINT},
+      </if>
+      <if test="isGift != null">
+        #{isGift,jdbcType=TINYINT},
+      </if>
+      <if test="gmtCreate != null">
+        #{gmtCreate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="gmtModified != null">
+        #{gmtModified,jdbcType=TIMESTAMP},
+      </if>
+      <if test="salesChannel != null">
+        #{salesChannel,jdbcType=CHAR},
+      </if>
+      <if test="spuWeight != null">
+        #{spuWeight,jdbcType=INTEGER},
+      </if>
+      <if test="spuStatus != null">
+        #{spuStatus,jdbcType=TINYINT},
+      </if>
+      <if test="isSearch != null">
+        #{isSearch,jdbcType=TINYINT},
+      </if>
+      <if test="originalPriceMax != null">
+        #{originalPriceMax,jdbcType=BIGINT},
+      </if>
+      <if test="originalPriceMin != null">
+        #{originalPriceMin,jdbcType=BIGINT},
+      </if>
+      <if test="warehouseCode != null">
+        #{warehouseCode,jdbcType=VARCHAR},
+      </if>
+      <if test="ferme != null">
+        #{ferme,jdbcType=TINYINT},
+      </if>
+      <if test="rate != null">
+        #{rate,jdbcType=VARCHAR},
+      </if>
+      <if test="allSoldNum != null">
+        #{allSoldNum,jdbcType=INTEGER},
+      </if>
+      <if test="allStockNumber != null">
+        #{allStockNumber,jdbcType=INTEGER},
+      </if>
+      <if test="allStockNumberActivity != null">
+        #{allStockNumberActivity,jdbcType=INTEGER},
+      </if>
+      <if test="memberRole != null">
+        #{memberRole,jdbcType=CHAR},
+      </if>
+      <if test="hotSearch != null">
+        #{hotSearch,jdbcType=VARCHAR},
+      </if>
+      <if test="isAllSkuNoRelease != null">
+        #{isAllSkuNoRelease,jdbcType=INTEGER},
+      </if>
+      <if test="propertys != null">
+        #{propertys,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="imagesUrls != null">
+        #{imagesUrls,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="spuSimpleDesc != null">
+        #{spuSimpleDesc,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="spuDesc != null">
+        #{spuDesc,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="upDesc != null">
+        #{upDesc,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="downDesc != null">
+        #{downDesc,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="cn.wyb.personal.bootes.model.po.TbSpuManagePOWithBLOBs">
+    update tb_spu_manage
+    <set>
+      <if test="spucode != null">
+        spucode = #{spucode,jdbcType=VARCHAR},
+      </if>
+      <if test="spuname != null">
+        spuname = #{spuname,jdbcType=VARCHAR},
+      </if>
+      <if test="spuTitle != null">
+        spu_title = #{spuTitle,jdbcType=VARCHAR},
+      </if>
+      <if test="spuVideo != null">
+        spu_video = #{spuVideo,jdbcType=VARCHAR},
+      </if>
+      <if test="brandId != null">
+        brand_id = #{brandId,jdbcType=INTEGER},
+      </if>
+      <if test="categoryId != null">
+        category_id = #{categoryId,jdbcType=INTEGER},
+      </if>
+      <if test="tagId != null">
+        tag_id = #{tagId,jdbcType=INTEGER},
+      </if>
+      <if test="listStartTime != null">
+        list_start_time = #{listStartTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="listStopTime != null">
+        list_stop_time = #{listStopTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="countryName != null">
+        country_name = #{countryName,jdbcType=VARCHAR},
+      </if>
+      <if test="minPrice != null">
+        min_price = #{minPrice,jdbcType=BIGINT},
+      </if>
+      <if test="maxPrice != null">
+        max_price = #{maxPrice,jdbcType=BIGINT},
+      </if>
+      <if test="minPriceActivity != null">
+        min_price_activity = #{minPriceActivity,jdbcType=BIGINT},
+      </if>
+      <if test="maxPriceActivity != null">
+        max_price_activity = #{maxPriceActivity,jdbcType=BIGINT},
+      </if>
+      <if test="isGift != null">
+        is_gift = #{isGift,jdbcType=TINYINT},
+      </if>
+      <if test="gmtCreate != null">
+        gmt_create = #{gmtCreate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="gmtModified != null">
+        gmt_modified = #{gmtModified,jdbcType=TIMESTAMP},
+      </if>
+      <if test="salesChannel != null">
+        sales_channel = #{salesChannel,jdbcType=CHAR},
+      </if>
+      <if test="spuWeight != null">
+        spu_weight = #{spuWeight,jdbcType=INTEGER},
+      </if>
+      <if test="spuStatus != null">
+        spu_status = #{spuStatus,jdbcType=TINYINT},
+      </if>
+      <if test="isSearch != null">
+        is_search = #{isSearch,jdbcType=TINYINT},
+      </if>
+      <if test="originalPriceMax != null">
+        original_price_max = #{originalPriceMax,jdbcType=BIGINT},
+      </if>
+      <if test="originalPriceMin != null">
+        original_price_min = #{originalPriceMin,jdbcType=BIGINT},
+      </if>
+      <if test="warehouseCode != null">
+        warehouse_code = #{warehouseCode,jdbcType=VARCHAR},
+      </if>
+      <if test="ferme != null">
+        ferme = #{ferme,jdbcType=TINYINT},
+      </if>
+      <if test="rate != null">
+        rate = #{rate,jdbcType=VARCHAR},
+      </if>
+      <if test="allSoldNum != null">
+        all_sold_num = #{allSoldNum,jdbcType=INTEGER},
+      </if>
+      <if test="allStockNumber != null">
+        all_stock_number = #{allStockNumber,jdbcType=INTEGER},
+      </if>
+      <if test="allStockNumberActivity != null">
+        all_stock_number_activity = #{allStockNumberActivity,jdbcType=INTEGER},
+      </if>
+      <if test="memberRole != null">
+        member_role = #{memberRole,jdbcType=CHAR},
+      </if>
+      <if test="hotSearch != null">
+        hot_search = #{hotSearch,jdbcType=VARCHAR},
+      </if>
+      <if test="isAllSkuNoRelease != null">
+        is_all_sku_no_release = #{isAllSkuNoRelease,jdbcType=INTEGER},
+      </if>
+      <if test="propertys != null">
+        propertys = #{propertys,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="imagesUrls != null">
+        images_urls = #{imagesUrls,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="spuSimpleDesc != null">
+        spu_simple_desc = #{spuSimpleDesc,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="spuDesc != null">
+        spu_desc = #{spuDesc,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="upDesc != null">
+        up_desc = #{upDesc,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="downDesc != null">
+        down_desc = #{downDesc,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where spu_id = #{spuId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="cn.wyb.personal.bootes.model.po.TbSpuManagePOWithBLOBs">
+    update tb_spu_manage
+    set spucode = #{spucode,jdbcType=VARCHAR},
+      spuname = #{spuname,jdbcType=VARCHAR},
+      spu_title = #{spuTitle,jdbcType=VARCHAR},
+      spu_video = #{spuVideo,jdbcType=VARCHAR},
+      brand_id = #{brandId,jdbcType=INTEGER},
+      category_id = #{categoryId,jdbcType=INTEGER},
+      tag_id = #{tagId,jdbcType=INTEGER},
+      list_start_time = #{listStartTime,jdbcType=TIMESTAMP},
+      list_stop_time = #{listStopTime,jdbcType=TIMESTAMP},
+      country_name = #{countryName,jdbcType=VARCHAR},
+      min_price = #{minPrice,jdbcType=BIGINT},
+      max_price = #{maxPrice,jdbcType=BIGINT},
+      min_price_activity = #{minPriceActivity,jdbcType=BIGINT},
+      max_price_activity = #{maxPriceActivity,jdbcType=BIGINT},
+      is_gift = #{isGift,jdbcType=TINYINT},
+      gmt_create = #{gmtCreate,jdbcType=TIMESTAMP},
+      gmt_modified = #{gmtModified,jdbcType=TIMESTAMP},
+      sales_channel = #{salesChannel,jdbcType=CHAR},
+      spu_weight = #{spuWeight,jdbcType=INTEGER},
+      spu_status = #{spuStatus,jdbcType=TINYINT},
+      is_search = #{isSearch,jdbcType=TINYINT},
+      original_price_max = #{originalPriceMax,jdbcType=BIGINT},
+      original_price_min = #{originalPriceMin,jdbcType=BIGINT},
+      warehouse_code = #{warehouseCode,jdbcType=VARCHAR},
+      ferme = #{ferme,jdbcType=TINYINT},
+      rate = #{rate,jdbcType=VARCHAR},
+      all_sold_num = #{allSoldNum,jdbcType=INTEGER},
+      all_stock_number = #{allStockNumber,jdbcType=INTEGER},
+      all_stock_number_activity = #{allStockNumberActivity,jdbcType=INTEGER},
+      member_role = #{memberRole,jdbcType=CHAR},
+      hot_search = #{hotSearch,jdbcType=VARCHAR},
+      is_all_sku_no_release = #{isAllSkuNoRelease,jdbcType=INTEGER},
+      propertys = #{propertys,jdbcType=LONGVARCHAR},
+      images_urls = #{imagesUrls,jdbcType=LONGVARCHAR},
+      spu_simple_desc = #{spuSimpleDesc,jdbcType=LONGVARCHAR},
+      spu_desc = #{spuDesc,jdbcType=LONGVARCHAR},
+      up_desc = #{upDesc,jdbcType=LONGVARCHAR},
+      down_desc = #{downDesc,jdbcType=LONGVARCHAR}
+    where spu_id = #{spuId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="cn.wyb.personal.bootes.model.po.TbSpuManagePO">
+    update tb_spu_manage
+    set spucode = #{spucode,jdbcType=VARCHAR},
+      spuname = #{spuname,jdbcType=VARCHAR},
+      spu_title = #{spuTitle,jdbcType=VARCHAR},
+      spu_video = #{spuVideo,jdbcType=VARCHAR},
+      brand_id = #{brandId,jdbcType=INTEGER},
+      category_id = #{categoryId,jdbcType=INTEGER},
+      tag_id = #{tagId,jdbcType=INTEGER},
+      list_start_time = #{listStartTime,jdbcType=TIMESTAMP},
+      list_stop_time = #{listStopTime,jdbcType=TIMESTAMP},
+      country_name = #{countryName,jdbcType=VARCHAR},
+      min_price = #{minPrice,jdbcType=BIGINT},
+      max_price = #{maxPrice,jdbcType=BIGINT},
+      min_price_activity = #{minPriceActivity,jdbcType=BIGINT},
+      max_price_activity = #{maxPriceActivity,jdbcType=BIGINT},
+      is_gift = #{isGift,jdbcType=TINYINT},
+      gmt_create = #{gmtCreate,jdbcType=TIMESTAMP},
+      gmt_modified = #{gmtModified,jdbcType=TIMESTAMP},
+      sales_channel = #{salesChannel,jdbcType=CHAR},
+      spu_weight = #{spuWeight,jdbcType=INTEGER},
+      spu_status = #{spuStatus,jdbcType=TINYINT},
+      is_search = #{isSearch,jdbcType=TINYINT},
+      original_price_max = #{originalPriceMax,jdbcType=BIGINT},
+      original_price_min = #{originalPriceMin,jdbcType=BIGINT},
+      warehouse_code = #{warehouseCode,jdbcType=VARCHAR},
+      ferme = #{ferme,jdbcType=TINYINT},
+      rate = #{rate,jdbcType=VARCHAR},
+      all_sold_num = #{allSoldNum,jdbcType=INTEGER},
+      all_stock_number = #{allStockNumber,jdbcType=INTEGER},
+      all_stock_number_activity = #{allStockNumberActivity,jdbcType=INTEGER},
+      member_role = #{memberRole,jdbcType=CHAR},
+      hot_search = #{hotSearch,jdbcType=VARCHAR},
+      is_all_sku_no_release = #{isAllSkuNoRelease,jdbcType=INTEGER}
+    where spu_id = #{spuId,jdbcType=INTEGER}
+  </update>
+  <resultMap id="BaseResultMap" type="cn.wyb.personal.bootes.model.po.TbSpuManagePO">
+    <id column="spu_id" jdbcType="INTEGER" property="spuId" />
+    <result column="spucode" jdbcType="VARCHAR" property="spucode" />
+    <result column="spuname" jdbcType="VARCHAR" property="spuname" />
+    <result column="spu_title" jdbcType="VARCHAR" property="spuTitle" />
+    <result column="spu_video" jdbcType="VARCHAR" property="spuVideo" />
+    <result column="brand_id" jdbcType="INTEGER" property="brandId" />
+    <result column="category_id" jdbcType="INTEGER" property="categoryId" />
+    <result column="tag_id" jdbcType="INTEGER" property="tagId" />
+    <result column="list_start_time" jdbcType="TIMESTAMP" property="listStartTime" />
+    <result column="list_stop_time" jdbcType="TIMESTAMP" property="listStopTime" />
+    <result column="country_name" jdbcType="VARCHAR" property="countryName" />
+    <result column="min_price" jdbcType="BIGINT" property="minPrice" />
+    <result column="max_price" jdbcType="BIGINT" property="maxPrice" />
+    <result column="min_price_activity" jdbcType="BIGINT" property="minPriceActivity" />
+    <result column="max_price_activity" jdbcType="BIGINT" property="maxPriceActivity" />
+    <result column="is_gift" jdbcType="TINYINT" property="isGift" />
+    <result column="gmt_create" jdbcType="TIMESTAMP" property="gmtCreate" />
+    <result column="gmt_modified" jdbcType="TIMESTAMP" property="gmtModified" />
+    <result column="sales_channel" jdbcType="CHAR" property="salesChannel" />
+    <result column="spu_weight" jdbcType="INTEGER" property="spuWeight" />
+    <result column="spu_status" jdbcType="TINYINT" property="spuStatus" />
+    <result column="is_search" jdbcType="TINYINT" property="isSearch" />
+    <result column="original_price_max" jdbcType="BIGINT" property="originalPriceMax" />
+    <result column="original_price_min" jdbcType="BIGINT" property="originalPriceMin" />
+    <result column="warehouse_code" jdbcType="VARCHAR" property="warehouseCode" />
+    <result column="ferme" jdbcType="TINYINT" property="ferme" />
+    <result column="rate" jdbcType="VARCHAR" property="rate" />
+    <result column="all_sold_num" jdbcType="INTEGER" property="allSoldNum" />
+    <result column="all_stock_number" jdbcType="INTEGER" property="allStockNumber" />
+    <result column="all_stock_number_activity" jdbcType="INTEGER" property="allStockNumberActivity" />
+    <result column="member_role" jdbcType="CHAR" property="memberRole" />
+    <result column="hot_search" jdbcType="VARCHAR" property="hotSearch" />
+    <result column="is_all_sku_no_release" jdbcType="INTEGER" property="isAllSkuNoRelease" />
+  </resultMap>
+  <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="cn.wyb.personal.bootes.model.po.TbSpuManagePOWithBLOBs">
+    <result column="propertys" jdbcType="LONGVARCHAR" property="propertys" />
+    <result column="images_urls" jdbcType="LONGVARCHAR" property="imagesUrls" />
+    <result column="spu_simple_desc" jdbcType="LONGVARCHAR" property="spuSimpleDesc" />
+    <result column="spu_desc" jdbcType="LONGVARCHAR" property="spuDesc" />
+    <result column="up_desc" jdbcType="LONGVARCHAR" property="upDesc" />
+    <result column="down_desc" jdbcType="LONGVARCHAR" property="downDesc" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    spu_id, spucode, spuname, spu_title, spu_video, brand_id, category_id, tag_id, list_start_time, 
+    list_stop_time, country_name, min_price, max_price, min_price_activity, max_price_activity, 
+    is_gift, gmt_create, gmt_modified, sales_channel, spu_weight, spu_status, is_search, 
+    original_price_max, original_price_min, warehouse_code, ferme, rate, all_sold_num, 
+    all_stock_number, all_stock_number_activity, member_role, hot_search, is_all_sku_no_release
+  </sql>
+  <sql id="Blob_Column_List">
+    propertys, images_urls, spu_simple_desc, spu_desc, up_desc, down_desc
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="ResultMapWithBLOBs">
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from tb_spu_manage
+    where spu_id = #{spuId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from tb_spu_manage
+    where spu_id = #{spuId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="cn.wyb.personal.bootes.model.po.TbSpuManagePOWithBLOBs">
+    insert into tb_spu_manage (spu_id, spucode, spuname, 
+      spu_title, spu_video, brand_id, 
+      category_id, tag_id, list_start_time, 
+      list_stop_time, country_name, min_price, 
+      max_price, min_price_activity, max_price_activity, 
+      is_gift, gmt_create, gmt_modified, 
+      sales_channel, spu_weight, spu_status, 
+      is_search, original_price_max, original_price_min, 
+      warehouse_code, ferme, rate, 
+      all_sold_num, all_stock_number, all_stock_number_activity, 
+      member_role, hot_search, is_all_sku_no_release, 
+      propertys, images_urls, spu_simple_desc, 
+      spu_desc, up_desc, down_desc
+      )
+    values (#{spuId,jdbcType=INTEGER}, #{spucode,jdbcType=VARCHAR}, #{spuname,jdbcType=VARCHAR}, 
+      #{spuTitle,jdbcType=VARCHAR}, #{spuVideo,jdbcType=VARCHAR}, #{brandId,jdbcType=INTEGER}, 
+      #{categoryId,jdbcType=INTEGER}, #{tagId,jdbcType=INTEGER}, #{listStartTime,jdbcType=TIMESTAMP}, 
+      #{listStopTime,jdbcType=TIMESTAMP}, #{countryName,jdbcType=VARCHAR}, #{minPrice,jdbcType=BIGINT}, 
+      #{maxPrice,jdbcType=BIGINT}, #{minPriceActivity,jdbcType=BIGINT}, #{maxPriceActivity,jdbcType=BIGINT}, 
+      #{isGift,jdbcType=TINYINT}, #{gmtCreate,jdbcType=TIMESTAMP}, #{gmtModified,jdbcType=TIMESTAMP}, 
+      #{salesChannel,jdbcType=CHAR}, #{spuWeight,jdbcType=INTEGER}, #{spuStatus,jdbcType=TINYINT}, 
+      #{isSearch,jdbcType=TINYINT}, #{originalPriceMax,jdbcType=BIGINT}, #{originalPriceMin,jdbcType=BIGINT}, 
+      #{warehouseCode,jdbcType=VARCHAR}, #{ferme,jdbcType=TINYINT}, #{rate,jdbcType=VARCHAR}, 
+      #{allSoldNum,jdbcType=INTEGER}, #{allStockNumber,jdbcType=INTEGER}, #{allStockNumberActivity,jdbcType=INTEGER}, 
+      #{memberRole,jdbcType=CHAR}, #{hotSearch,jdbcType=VARCHAR}, #{isAllSkuNoRelease,jdbcType=INTEGER}, 
+      #{propertys,jdbcType=LONGVARCHAR}, #{imagesUrls,jdbcType=LONGVARCHAR}, #{spuSimpleDesc,jdbcType=LONGVARCHAR}, 
+      #{spuDesc,jdbcType=LONGVARCHAR}, #{upDesc,jdbcType=LONGVARCHAR}, #{downDesc,jdbcType=LONGVARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="cn.wyb.personal.bootes.model.po.TbSpuManagePOWithBLOBs">
+    insert into tb_spu_manage
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="spuId != null">
+        spu_id,
+      </if>
+      <if test="spucode != null">
+        spucode,
+      </if>
+      <if test="spuname != null">
+        spuname,
+      </if>
+      <if test="spuTitle != null">
+        spu_title,
+      </if>
+      <if test="spuVideo != null">
+        spu_video,
+      </if>
+      <if test="brandId != null">
+        brand_id,
+      </if>
+      <if test="categoryId != null">
+        category_id,
+      </if>
+      <if test="tagId != null">
+        tag_id,
+      </if>
+      <if test="listStartTime != null">
+        list_start_time,
+      </if>
+      <if test="listStopTime != null">
+        list_stop_time,
+      </if>
+      <if test="countryName != null">
+        country_name,
+      </if>
+      <if test="minPrice != null">
+        min_price,
+      </if>
+      <if test="maxPrice != null">
+        max_price,
+      </if>
+      <if test="minPriceActivity != null">
+        min_price_activity,
+      </if>
+      <if test="maxPriceActivity != null">
+        max_price_activity,
+      </if>
+      <if test="isGift != null">
+        is_gift,
+      </if>
+      <if test="gmtCreate != null">
+        gmt_create,
+      </if>
+      <if test="gmtModified != null">
+        gmt_modified,
+      </if>
+      <if test="salesChannel != null">
+        sales_channel,
+      </if>
+      <if test="spuWeight != null">
+        spu_weight,
+      </if>
+      <if test="spuStatus != null">
+        spu_status,
+      </if>
+      <if test="isSearch != null">
+        is_search,
+      </if>
+      <if test="originalPriceMax != null">
+        original_price_max,
+      </if>
+      <if test="originalPriceMin != null">
+        original_price_min,
+      </if>
+      <if test="warehouseCode != null">
+        warehouse_code,
+      </if>
+      <if test="ferme != null">
+        ferme,
+      </if>
+      <if test="rate != null">
+        rate,
+      </if>
+      <if test="allSoldNum != null">
+        all_sold_num,
+      </if>
+      <if test="allStockNumber != null">
+        all_stock_number,
+      </if>
+      <if test="allStockNumberActivity != null">
+        all_stock_number_activity,
+      </if>
+      <if test="memberRole != null">
+        member_role,
+      </if>
+      <if test="hotSearch != null">
+        hot_search,
+      </if>
+      <if test="isAllSkuNoRelease != null">
+        is_all_sku_no_release,
+      </if>
+      <if test="propertys != null">
+        propertys,
+      </if>
+      <if test="imagesUrls != null">
+        images_urls,
+      </if>
+      <if test="spuSimpleDesc != null">
+        spu_simple_desc,
+      </if>
+      <if test="spuDesc != null">
+        spu_desc,
+      </if>
+      <if test="upDesc != null">
+        up_desc,
+      </if>
+      <if test="downDesc != null">
+        down_desc,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="spuId != null">
+        #{spuId,jdbcType=INTEGER},
+      </if>
+      <if test="spucode != null">
+        #{spucode,jdbcType=VARCHAR},
+      </if>
+      <if test="spuname != null">
+        #{spuname,jdbcType=VARCHAR},
+      </if>
+      <if test="spuTitle != null">
+        #{spuTitle,jdbcType=VARCHAR},
+      </if>
+      <if test="spuVideo != null">
+        #{spuVideo,jdbcType=VARCHAR},
+      </if>
+      <if test="brandId != null">
+        #{brandId,jdbcType=INTEGER},
+      </if>
+      <if test="categoryId != null">
+        #{categoryId,jdbcType=INTEGER},
+      </if>
+      <if test="tagId != null">
+        #{tagId,jdbcType=INTEGER},
+      </if>
+      <if test="listStartTime != null">
+        #{listStartTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="listStopTime != null">
+        #{listStopTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="countryName != null">
+        #{countryName,jdbcType=VARCHAR},
+      </if>
+      <if test="minPrice != null">
+        #{minPrice,jdbcType=BIGINT},
+      </if>
+      <if test="maxPrice != null">
+        #{maxPrice,jdbcType=BIGINT},
+      </if>
+      <if test="minPriceActivity != null">
+        #{minPriceActivity,jdbcType=BIGINT},
+      </if>
+      <if test="maxPriceActivity != null">
+        #{maxPriceActivity,jdbcType=BIGINT},
+      </if>
+      <if test="isGift != null">
+        #{isGift,jdbcType=TINYINT},
+      </if>
+      <if test="gmtCreate != null">
+        #{gmtCreate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="gmtModified != null">
+        #{gmtModified,jdbcType=TIMESTAMP},
+      </if>
+      <if test="salesChannel != null">
+        #{salesChannel,jdbcType=CHAR},
+      </if>
+      <if test="spuWeight != null">
+        #{spuWeight,jdbcType=INTEGER},
+      </if>
+      <if test="spuStatus != null">
+        #{spuStatus,jdbcType=TINYINT},
+      </if>
+      <if test="isSearch != null">
+        #{isSearch,jdbcType=TINYINT},
+      </if>
+      <if test="originalPriceMax != null">
+        #{originalPriceMax,jdbcType=BIGINT},
+      </if>
+      <if test="originalPriceMin != null">
+        #{originalPriceMin,jdbcType=BIGINT},
+      </if>
+      <if test="warehouseCode != null">
+        #{warehouseCode,jdbcType=VARCHAR},
+      </if>
+      <if test="ferme != null">
+        #{ferme,jdbcType=TINYINT},
+      </if>
+      <if test="rate != null">
+        #{rate,jdbcType=VARCHAR},
+      </if>
+      <if test="allSoldNum != null">
+        #{allSoldNum,jdbcType=INTEGER},
+      </if>
+      <if test="allStockNumber != null">
+        #{allStockNumber,jdbcType=INTEGER},
+      </if>
+      <if test="allStockNumberActivity != null">
+        #{allStockNumberActivity,jdbcType=INTEGER},
+      </if>
+      <if test="memberRole != null">
+        #{memberRole,jdbcType=CHAR},
+      </if>
+      <if test="hotSearch != null">
+        #{hotSearch,jdbcType=VARCHAR},
+      </if>
+      <if test="isAllSkuNoRelease != null">
+        #{isAllSkuNoRelease,jdbcType=INTEGER},
+      </if>
+      <if test="propertys != null">
+        #{propertys,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="imagesUrls != null">
+        #{imagesUrls,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="spuSimpleDesc != null">
+        #{spuSimpleDesc,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="spuDesc != null">
+        #{spuDesc,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="upDesc != null">
+        #{upDesc,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="downDesc != null">
+        #{downDesc,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="cn.wyb.personal.bootes.model.po.TbSpuManagePOWithBLOBs">
+    update tb_spu_manage
+    <set>
+      <if test="spucode != null">
+        spucode = #{spucode,jdbcType=VARCHAR},
+      </if>
+      <if test="spuname != null">
+        spuname = #{spuname,jdbcType=VARCHAR},
+      </if>
+      <if test="spuTitle != null">
+        spu_title = #{spuTitle,jdbcType=VARCHAR},
+      </if>
+      <if test="spuVideo != null">
+        spu_video = #{spuVideo,jdbcType=VARCHAR},
+      </if>
+      <if test="brandId != null">
+        brand_id = #{brandId,jdbcType=INTEGER},
+      </if>
+      <if test="categoryId != null">
+        category_id = #{categoryId,jdbcType=INTEGER},
+      </if>
+      <if test="tagId != null">
+        tag_id = #{tagId,jdbcType=INTEGER},
+      </if>
+      <if test="listStartTime != null">
+        list_start_time = #{listStartTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="listStopTime != null">
+        list_stop_time = #{listStopTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="countryName != null">
+        country_name = #{countryName,jdbcType=VARCHAR},
+      </if>
+      <if test="minPrice != null">
+        min_price = #{minPrice,jdbcType=BIGINT},
+      </if>
+      <if test="maxPrice != null">
+        max_price = #{maxPrice,jdbcType=BIGINT},
+      </if>
+      <if test="minPriceActivity != null">
+        min_price_activity = #{minPriceActivity,jdbcType=BIGINT},
+      </if>
+      <if test="maxPriceActivity != null">
+        max_price_activity = #{maxPriceActivity,jdbcType=BIGINT},
+      </if>
+      <if test="isGift != null">
+        is_gift = #{isGift,jdbcType=TINYINT},
+      </if>
+      <if test="gmtCreate != null">
+        gmt_create = #{gmtCreate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="gmtModified != null">
+        gmt_modified = #{gmtModified,jdbcType=TIMESTAMP},
+      </if>
+      <if test="salesChannel != null">
+        sales_channel = #{salesChannel,jdbcType=CHAR},
+      </if>
+      <if test="spuWeight != null">
+        spu_weight = #{spuWeight,jdbcType=INTEGER},
+      </if>
+      <if test="spuStatus != null">
+        spu_status = #{spuStatus,jdbcType=TINYINT},
+      </if>
+      <if test="isSearch != null">
+        is_search = #{isSearch,jdbcType=TINYINT},
+      </if>
+      <if test="originalPriceMax != null">
+        original_price_max = #{originalPriceMax,jdbcType=BIGINT},
+      </if>
+      <if test="originalPriceMin != null">
+        original_price_min = #{originalPriceMin,jdbcType=BIGINT},
+      </if>
+      <if test="warehouseCode != null">
+        warehouse_code = #{warehouseCode,jdbcType=VARCHAR},
+      </if>
+      <if test="ferme != null">
+        ferme = #{ferme,jdbcType=TINYINT},
+      </if>
+      <if test="rate != null">
+        rate = #{rate,jdbcType=VARCHAR},
+      </if>
+      <if test="allSoldNum != null">
+        all_sold_num = #{allSoldNum,jdbcType=INTEGER},
+      </if>
+      <if test="allStockNumber != null">
+        all_stock_number = #{allStockNumber,jdbcType=INTEGER},
+      </if>
+      <if test="allStockNumberActivity != null">
+        all_stock_number_activity = #{allStockNumberActivity,jdbcType=INTEGER},
+      </if>
+      <if test="memberRole != null">
+        member_role = #{memberRole,jdbcType=CHAR},
+      </if>
+      <if test="hotSearch != null">
+        hot_search = #{hotSearch,jdbcType=VARCHAR},
+      </if>
+      <if test="isAllSkuNoRelease != null">
+        is_all_sku_no_release = #{isAllSkuNoRelease,jdbcType=INTEGER},
+      </if>
+      <if test="propertys != null">
+        propertys = #{propertys,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="imagesUrls != null">
+        images_urls = #{imagesUrls,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="spuSimpleDesc != null">
+        spu_simple_desc = #{spuSimpleDesc,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="spuDesc != null">
+        spu_desc = #{spuDesc,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="upDesc != null">
+        up_desc = #{upDesc,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="downDesc != null">
+        down_desc = #{downDesc,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where spu_id = #{spuId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="cn.wyb.personal.bootes.model.po.TbSpuManagePOWithBLOBs">
+    update tb_spu_manage
+    set spucode = #{spucode,jdbcType=VARCHAR},
+      spuname = #{spuname,jdbcType=VARCHAR},
+      spu_title = #{spuTitle,jdbcType=VARCHAR},
+      spu_video = #{spuVideo,jdbcType=VARCHAR},
+      brand_id = #{brandId,jdbcType=INTEGER},
+      category_id = #{categoryId,jdbcType=INTEGER},
+      tag_id = #{tagId,jdbcType=INTEGER},
+      list_start_time = #{listStartTime,jdbcType=TIMESTAMP},
+      list_stop_time = #{listStopTime,jdbcType=TIMESTAMP},
+      country_name = #{countryName,jdbcType=VARCHAR},
+      min_price = #{minPrice,jdbcType=BIGINT},
+      max_price = #{maxPrice,jdbcType=BIGINT},
+      min_price_activity = #{minPriceActivity,jdbcType=BIGINT},
+      max_price_activity = #{maxPriceActivity,jdbcType=BIGINT},
+      is_gift = #{isGift,jdbcType=TINYINT},
+      gmt_create = #{gmtCreate,jdbcType=TIMESTAMP},
+      gmt_modified = #{gmtModified,jdbcType=TIMESTAMP},
+      sales_channel = #{salesChannel,jdbcType=CHAR},
+      spu_weight = #{spuWeight,jdbcType=INTEGER},
+      spu_status = #{spuStatus,jdbcType=TINYINT},
+      is_search = #{isSearch,jdbcType=TINYINT},
+      original_price_max = #{originalPriceMax,jdbcType=BIGINT},
+      original_price_min = #{originalPriceMin,jdbcType=BIGINT},
+      warehouse_code = #{warehouseCode,jdbcType=VARCHAR},
+      ferme = #{ferme,jdbcType=TINYINT},
+      rate = #{rate,jdbcType=VARCHAR},
+      all_sold_num = #{allSoldNum,jdbcType=INTEGER},
+      all_stock_number = #{allStockNumber,jdbcType=INTEGER},
+      all_stock_number_activity = #{allStockNumberActivity,jdbcType=INTEGER},
+      member_role = #{memberRole,jdbcType=CHAR},
+      hot_search = #{hotSearch,jdbcType=VARCHAR},
+      is_all_sku_no_release = #{isAllSkuNoRelease,jdbcType=INTEGER},
+      propertys = #{propertys,jdbcType=LONGVARCHAR},
+      images_urls = #{imagesUrls,jdbcType=LONGVARCHAR},
+      spu_simple_desc = #{spuSimpleDesc,jdbcType=LONGVARCHAR},
+      spu_desc = #{spuDesc,jdbcType=LONGVARCHAR},
+      up_desc = #{upDesc,jdbcType=LONGVARCHAR},
+      down_desc = #{downDesc,jdbcType=LONGVARCHAR}
+    where spu_id = #{spuId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="cn.wyb.personal.bootes.model.po.TbSpuManagePO">
+    update tb_spu_manage
+    set spucode = #{spucode,jdbcType=VARCHAR},
+      spuname = #{spuname,jdbcType=VARCHAR},
+      spu_title = #{spuTitle,jdbcType=VARCHAR},
+      spu_video = #{spuVideo,jdbcType=VARCHAR},
+      brand_id = #{brandId,jdbcType=INTEGER},
+      category_id = #{categoryId,jdbcType=INTEGER},
+      tag_id = #{tagId,jdbcType=INTEGER},
+      list_start_time = #{listStartTime,jdbcType=TIMESTAMP},
+      list_stop_time = #{listStopTime,jdbcType=TIMESTAMP},
+      country_name = #{countryName,jdbcType=VARCHAR},
+      min_price = #{minPrice,jdbcType=BIGINT},
+      max_price = #{maxPrice,jdbcType=BIGINT},
+      min_price_activity = #{minPriceActivity,jdbcType=BIGINT},
+      max_price_activity = #{maxPriceActivity,jdbcType=BIGINT},
+      is_gift = #{isGift,jdbcType=TINYINT},
+      gmt_create = #{gmtCreate,jdbcType=TIMESTAMP},
+      gmt_modified = #{gmtModified,jdbcType=TIMESTAMP},
+      sales_channel = #{salesChannel,jdbcType=CHAR},
+      spu_weight = #{spuWeight,jdbcType=INTEGER},
+      spu_status = #{spuStatus,jdbcType=TINYINT},
+      is_search = #{isSearch,jdbcType=TINYINT},
+      original_price_max = #{originalPriceMax,jdbcType=BIGINT},
+      original_price_min = #{originalPriceMin,jdbcType=BIGINT},
+      warehouse_code = #{warehouseCode,jdbcType=VARCHAR},
+      ferme = #{ferme,jdbcType=TINYINT},
+      rate = #{rate,jdbcType=VARCHAR},
+      all_sold_num = #{allSoldNum,jdbcType=INTEGER},
+      all_stock_number = #{allStockNumber,jdbcType=INTEGER},
+      all_stock_number_activity = #{allStockNumberActivity,jdbcType=INTEGER},
+      member_role = #{memberRole,jdbcType=CHAR},
+      hot_search = #{hotSearch,jdbcType=VARCHAR},
+      is_all_sku_no_release = #{isAllSkuNoRelease,jdbcType=INTEGER}
+    where spu_id = #{spuId,jdbcType=INTEGER}
+  </update>
+</mapper>
