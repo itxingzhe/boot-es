@@ -14,7 +14,7 @@
     </commentGenerator>
     <!--数据库链接URL，用户名、密码 -->
     <jdbcConnection driverClass="com.mysql.jdbc.Driver"
-      connectionURL="jdbc:mysql://192.168.7.104:3306/qqsk?useUnicode=true&amp;characterEncoding=utf8&amp;autoReconnect=true&amp;allowMultiQueries=true"
+      connectionURL="jdbc:mysql://192.168.7.104:3306/qqsk_manager?useUnicode=true&amp;characterEncoding=utf8&amp;autoReconnect=true&amp;allowMultiQueries=true"
       userId="jiebai"
       password="123456">
     </jdbcConnection>
@@ -49,7 +49,7 @@
            selectByExampleQueryId="false"/>
     <table tableName="module" domainObjectName="Module" enableCountByExample="false" enableUpdateByExample="false"
            enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false"/>-->
-    <table tableName="tb_spu_manage" domainObjectName="TbSpuManagePO" enableCountByExample="false"
+    <!--<table tableName="tb_spu_manage" domainObjectName="TbSpuManagePO" enableCountByExample="false"
       enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false"
       selectByExampleQueryId="false">
       <columnOverride column="propertys" javaType="java.lang.String" jdbcType="VARCHAR"/>
@@ -59,6 +59,9 @@
       <columnOverride column="up_desc" javaType="java.lang.String" jdbcType="VARCHAR"/>
       <columnOverride column="down_desc" javaType="java.lang.String" jdbcType="VARCHAR"/>
       <columnOverride column="down_desc" javaType="java.lang.String" jdbcType="VARCHAR"/>
-    </table>
+    </table>-->
+    <table tableName="tb_sale_team" domainObjectName="TbSaleTeam" enableCountByExample="false"
+      enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false"
+      selectByExampleQueryId="false"></table>
   </context>
 </generatorConfiguration>

@@ -1,0 +1,541 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="qqsk.goods.server.mybatis.mapper.master.SpuManageMapper">
+  <resultMap id="BaseResultMapP" type="com.qqskv3.entities.autogen.PTbSpuManage">
+    <id column="spu_id" jdbcType="INTEGER" property="spuId_"/>
+    <result column="spucode" jdbcType="VARCHAR" property="spucode_"/>
+    <result column="spuname" jdbcType="VARCHAR" property="spuname_"/>
+    <result column="spu_title" jdbcType="VARCHAR" property="spuTitle_"/>
+    <result column="spu_video" jdbcType="VARCHAR" property="spuVideo_"/>
+    <result column="brand_id" jdbcType="INTEGER" property="brandId_"/>
+    <result column="category_id" jdbcType="INTEGER" property="categoryId_"/>
+    <result column="tag_id" jdbcType="INTEGER" property="tagId_"/>
+    <result column="list_start_time" jdbcType="TIMESTAMP" property="listStartTime_"/>
+    <result column="list_stop_time" jdbcType="TIMESTAMP" property="listStopTime_"/>
+    <result column="country_name" jdbcType="VARCHAR" property="countryName_"/>
+    <result column="min_price" jdbcType="BIGINT" property="minPrice_"/>
+    <result column="max_price" jdbcType="BIGINT" property="maxPrice_"/>
+    <result column="min_price_activity" jdbcType="BIGINT" property="minPriceActivity_"/>
+    <result column="max_price_activity" jdbcType="BIGINT" property="maxPriceActivity_"/>
+    <result column="is_gift" jdbcType="TINYINT" property="isGift_"/>
+    <result column="gmt_create" jdbcType="TIMESTAMP" property="gmtCreate_"/>
+    <result column="gmt_modified" jdbcType="TIMESTAMP" property="gmtModified_"/>
+    <result column="sales_channel" jdbcType="CHAR" property="salesChannel_"/>
+    <result column="spu_weight" jdbcType="INTEGER" property="spuWeight_"/>
+    <result column="spu_status" jdbcType="TINYINT" property="spuStatus_"/>
+    <result column="is_search" jdbcType="TINYINT" property="isSearch_"/>
+    <result column="original_price_max" jdbcType="BIGINT" property="originalPriceMax_"/>
+    <result column="original_price_min" jdbcType="BIGINT" property="originalPriceMin_"/>
+    <result column="warehouse_code" jdbcType="VARCHAR" property="warehouseCode_"/>
+    <result column="ferme" jdbcType="TINYINT" property="ferme_"/>
+    <result column="rate" jdbcType="VARCHAR" property="rate_"/>
+    <result column="all_sold_num" jdbcType="INTEGER" property="allSoldNum_"/>
+    <result column="all_stock_number" jdbcType="INTEGER" property="allStockNumber_"/>
+    <result column="all_stock_number_activity" jdbcType="INTEGER"
+      property="allStockNumberActivity_"/>
+    <result column="member_role" jdbcType="CHAR" property="memberRole_"/>
+    <result column="propertys" jdbcType="LONGVARCHAR" property="propertys_"/>
+    <result column="images_urls" jdbcType="LONGVARCHAR" property="imagesUrls_"/>
+    <result column="spu_simple_desc" jdbcType="LONGVARCHAR" property="spuSimpleDesc_"/>
+    <result column="spu_desc" jdbcType="LONGVARCHAR" property="spuDesc_"/>
+    <result column="up_desc" jdbcType="LONGVARCHAR" property="upDesc_"/>
+    <result column="down_desc" jdbcType="LONGVARCHAR" property="downDesc_"/>
+  </resultMap>
+
+  <sql id="Base_Column_List">
+    spu_id, spucode, spuname, spu_title, spu_video, brand_id, category_id, tag_id,DATE_FORMAT(list_start_time,'%Y-%m-%d %H:%i:%s') list_start_time,
+   DATE_FORMAT(list_stop_time,'%Y-%m-%d %H:%i:%s') list_stop_time, country_name, min_price, max_price, min_price_activity, max_price_activity,
+    is_gift, DATE_FORMAT(gmt_create,'%Y-%m-%d %H:%i:%s') gmt_create,DATE_FORMAT(gmt_modified,'%Y-%m-%d %H:%i:%s') gmt_modified, sales_channel, spu_weight, spu_status, is_search,
+    original_price_max, original_price_min, warehouse_code, ferme, rate, all_sold_num,
+    all_stock_number, all_stock_number_activity, member_role, propertys, images_urls, spu_simple_desc, spu_desc, up_desc, down_desc
+  </sql>
+
+  <select id="selectSpumanageByspuIds" resultType="qqsk.goods.server.entity.pojo.SpuManage">
+    SELECT * FROM tb_spu_manage WHERE spu_id IN
+    <foreach collection="spuIdsList" item="spuId" open="(" close=")" index="index" separator=",">
+      #{spuId}
+    </foreach>
+  </select>
+
+  <select id="selectSpuManageBySpucode" resultMap="BaseResultMapP">
+    SELECT
+    <include refid="Base_Column_List"/>
+    FROM tb_spu_manage WHERE spucode=#{spucode}
+    <if test="client == 4">
+      AND spu_id NOT  IN
+      (
+      SELECT spu_id FROM tb_spu_tag WHERE tag_id = (
+      SELECT VALUE FROM tb_dictionary WHERE id = 50
+      )
+    </if>
+  </select>
+
+  <select id="selectSpumanageByStringSpuIds" resultType="qqsk.goods.server.entity.pojo.SpuManage">
+    SELECT * FROM tb_spu_manage WHERE spu_id IN
+    <foreach collection="spuIds" item="spuId" open="(" close=")" index="index" separator=",">
+      #{spuId}
+    </foreach>
+  </select>
+
+  <select id="selectSpuManageBySpuId" resultMap="BaseResultMapP">
+    select
+    <include refid="Base_Column_List"/>
+    from tb_spu_manage
+    where spu_id = #{spuId}
+    <if test="client == 4">
+      AND spu_id NOT  IN
+      (
+      SELECT spu_id FROM tb_spu_tag WHERE tag_id = (
+      SELECT VALUE FROM tb_dictionary WHERE id = 50
+      )
+      )
+    </if>
+  </select>
+
+
+  <select id="selectSpuManageByIdFilter" resultType="qqsk.goods.server.entity.pojo.SpuManage"
+    parameterType="java.lang.Integer">
+		SELECT
+			spu_id as spuId,
+			spucode as spucode,
+			spuname as spuname,
+			propertys as propertys,
+			spu_title as spuTitle,
+			spu_video as spuVideo,
+			images_urls as imagesUrls,
+			spu_simple_desc as spuSimpleDesc,
+			spu_desc as spuDesc,
+			brand_id as brandId,
+			up_desc as upDesc,
+			category_id as categoryId,
+			down_desc as downDesc,
+			tag_id as tagId,
+			list_start_time as listStartTime,
+			list_stop_time as listStopTime,
+			country_name as countryName,
+			min_price as minPrice,
+			max_price as maxPrice,
+			min_price_activity as minPriceActivity,
+			max_price_activity as maxPriceActivity,
+			is_gift as isGift,
+			gmt_create as gmtCreate,
+			gmt_modified as gmtModified,
+			sales_channel as salesChannel,
+			spu_weight as spuWeight,
+			spu_status as spuStatus,
+			is_search as isSearch,
+			warehouse_code as warehouseCode,
+			original_price_max as originalPriceMax,
+			original_price_min as originalPriceMin,
+			ferme as ferme,
+			rate as rate,
+			all_sold_num as allSoldNum,
+			all_stock_number as allStockNumber,
+			all_stock_number_activity as allStockNumberActivity,
+			member_role as memberRole
+		FROM
+			tb_spu_manage
+		WHERE
+			1=1
+			AND spu_id =#{id}
+ 	</select>
+
+  <select id="selectSpuManageByIdFilterBatch"
+    resultType="qqsk.goods.server.entity.pojo.GoodSpuInfo"
+    parameterType="java.util.List">
+    SELECT
+    ma.spu_id as spuId,
+    ma.spucode as spucode,
+    ma.spuname as spuname,
+    ma.propertys as propertys,
+    ma.spu_title as spuTitle,
+    ma.spu_video as spuVideo,
+    ma.images_urls as imagesUrls,
+    ma.spu_simple_desc as spuSimpleDesc,
+    ma.spu_desc as spuDesc,
+    ma.brand_id as brandId,
+    ma.up_desc as upDesc,
+    ma.category_id as categoryId,
+    ma.down_desc as downDesc,
+    ma.tag_id as tagId,
+    ma.list_start_time as listStartTime,
+    ma.list_stop_time as listStopTime,
+    ma.country_name as countryName,
+    ma.min_price as minPrice,
+    ma.max_price as maxPrice,
+    ma.min_price_activity as minPriceActivity,
+    ma.max_price_activity as maxPriceActivity,
+    ma.is_gift as isGift,
+    ma.gmt_create as gmtCreate,
+    ma.gmt_modified as gmtModified,
+    ma.sales_channel as salesChannel,
+    ma.spu_weight as spuWeight,
+    ma.spu_status as spuStatus,
+    ma.is_search as isSearch,
+    ma.warehouse_code as warehouseCode,
+    ma.original_price_max as originalPriceMax,
+    ma.original_price_min as originalPriceMin,
+    ma.ferme as ferme,
+    ma.rate as rate,
+    ma.all_sold_num as allSoldNum,
+    ma.all_stock_number as allStockNumber,
+    ma.all_stock_number_activity as allStockNumberActivity,
+    ma.member_role as memberRole
+    FROM
+    tb_spu_manage ma
+    WHERE
+    1=1
+    AND ma.spu_id in
+    <foreach item="item" index="index" collection="spuIdList" open="(" separator="," close=")">
+      #{item}
+    </foreach>
+  </select>
+
+  <select id="selectBrandIdBySpuCode" resultType="java.lang.Integer"
+    parameterType="java.lang.String">
+		select brand_id as id from tb_spu_manage where spucode = #{spucode}
+ 	</select>
+
+  <!--查询类目ID -->
+  <select id="selectItemIdListBySpuCode" resultType="java.lang.Integer"
+    parameterType="java.lang.String">
+		SELECT DISTINCT
+		impi.item_module_parent_id
+		FROM
+		tb_item_module_spu timsp,
+		tb_spu_manage tsm,
+		tb_item_module impi
+		WHERE
+		1=1
+		AND tsm.spucode = #{spuCode}
+		AND timsp.spu_id = tsm.spu_id
+		AND impi.item_module_id = timsp.item_module_id
+	</select>
+
+  <!--杨康-->
+  <!--根据spucode和属性加密字符串查询sku -->
+  <select id="getGoodsBySpuCodeAndPropertysSign" resultType="com.qqskv3.data.goods.GoodsSkuInfoDTO">
+    SELECT
+      pro.product_id AS productId,
+      pro.skucode AS skucode,
+      pro.product_image_url AS productImageUrl,
+      pro.stock_number AS stockNumber,
+      pro.activity_stock AS activityStock,
+      IFNULL(pro.price,0)*0.01 AS price,
+      IFNULL(pro.activity_price,0)*0.01 AS priceActivity,
+      pro.max_purchase AS maxPurchase,
+      pro.min_purchase AS minPurchase,
+      pro.max_purchase_activity AS maxPurchaseActivity,
+      pro.min_purchase_activity AS minPurchaseActivity,
+      pro.is_release AS isRelease
+    FROM
+      tb_product AS pro
+    WHERE 1 = 1
+      AND pro.spucode = #{spucode}
+      AND pro.sku_check_property = #{propertysSign}
+  </select>
+
+  <!--杨康-->
+  <!--根据spucode查询sku列表 -->
+  <select id="listGoodsBySpuCode" resultType="com.qqskv3.data.goods.GoodsSkuInfoDTO">
+    SELECT
+      pro.product_id AS productId,
+      pro.skucode AS skucode,
+      pro.product_image_url AS productImageUrl,
+      pro.stock_number AS stockNumber,
+      pro.activity_stock AS activityStock,
+      IFNULL(pro.price,0)*0.01 AS price,
+      IFNULL(pro.activity_price,0)*0.01 AS priceActivity,
+      pro.max_purchase AS maxPurchase,
+      pro.min_purchase AS minPurchase,
+      pro.max_purchase_activity AS maxPurchaseActivity,
+      pro.min_purchase_activity AS minPurchaseActivity,
+      pro.sku_propertys AS skuPropertys,
+      pro.is_release AS isRelease
+    FROM
+      tb_product AS pro
+    WHERE 1 = 1
+      AND pro.spucode = #{spucode}
+      AND pro.is_release = 1
+  </select>
+
+  <!--杨康-->
+  <!--根据spuId & channel查询高返利sku列表 -->
+  <select id="listGoodsBySpuIdAndChannelGFL" resultType="com.qqskv3.data.goods.GoodsSkuInfoDTO">
+    SELECT
+      sku.product_id AS productId,
+      sku.skucode AS skucode,
+      sku.stock_number AS stockNumber,
+			IFNULL(gcrSku.product_image_url,sku.product_image_url) AS productImageUrl,
+      IFNULL(gcrSku.sku_price,sku.price)*0.01 AS price,
+      sku.max_purchase AS maxPurchase,
+      sku.min_purchase AS minPurchase,
+      sku.sku_propertys AS skuPropertys
+    FROM
+			(
+				SELECT
+					gcr.sku_id,
+					gcr.product_image_url,
+					gcr.sku_price,
+					gcr.offline_time
+				FROM
+					tb_goods_channel_rebeta AS gcr
+				WHERE 1 = 1
+					AND gcr.spu_id = #{spuId}
+					AND gcr.sys_channel = #{channel}
+					AND gcr.type = 2
+					AND gcr.offline_time > NOW()
+					AND gcr.is_disable = 0
+					AND	gcr.Is_delete = 0
+			) AS gcrSku
+		LEFT JOIN
+			tb_product AS sku
+				ON
+					gcrSku.sku_id = sku.product_id
+  </select>
+
+  <!--杨康-->
+  <!--根据spuId查询spu信息 -->
+  <select id="getGoodsBySpuId" resultType="com.qqskv3.data.goods.GoodsSpuInfoDTO">
+    SELECT
+      spu.spu_id AS spuId,
+      spu.spucode AS spucode,
+      spu.spu_title AS spuTitle,
+      spu.images_urls AS imagesUrls,
+      spu.spu_video AS spuVideo,
+      spu.propertys AS propertys,
+      spu.spu_simple_desc AS spuSimpleDesc,
+      spu.spu_desc AS spuDesc,
+      spu.ferme AS ferme,
+      spu.rate AS rate,
+      spu.country_name AS countryName,
+      spu.all_stock_number AS allStockNumber,
+      spu.all_stock_number_activity AS allStockNumberActivity,
+      spu.member_role AS memberRole,
+      w.warehouse_name AS warehouseName,
+      w.short_name AS shortName,
+      w.type AS warehouseType,
+      ac.activity_type AS activityType,
+      ac.activity_id AS activityId,
+      ac.activity_name AS activityName,
+      ac.activity_start AS activityStart,
+      ac.activity_end AS activityEnd,
+      IFNULL(spu.original_price_min,0)*0.01 AS originalPriceMin,
+      IFNULL(spu.original_price_max,0)*0.01 AS originalPriceMax,
+      IFNULL(spu.min_price,0)*0.01 AS minPrice,
+      IFNULL(spu.max_price,0)*0.01 AS maxPrice,
+      ISNULL(ac.activity_type) AS isActivity,
+      IF(ac.activity_start > NOW(),1,0) AS isStart,
+      IFNULL(spu.min_price_activity,0)*0.01 AS minActivityPrice,
+      IFNULL(spu.max_price_activity,0)*0.01 AS maxActivityPrice,
+      ISNULL(uc.user_id) AS isCollection,
+      IF(spu.list_stop_time > NOW(),1,0) AS isRelease
+    FROM
+      (
+      SELECT
+        *
+      FROM
+        tb_spu_manage
+      WHERE 1 = 1
+        AND tb_spu_manage.spu_id = #{spuId}
+      ) AS spu
+    LEFT JOIN
+      (
+      SELECT
+        tas.spu_id,
+        tal.*
+      FROM
+        tb_activity_spu	AS tas
+      LEFT JOIN
+        tb_activity_list AS tal
+        ON
+          tas.activity_id = tal.activity_id
+      WHERE 1 = 1
+          AND (NOW() > tal.up_time OR tal.up_time IS NULL)
+          AND tal.activity_end > NOW()
+          AND tal.is_delete = 1
+          AND tal.send_status = 1
+      ) AS ac
+      ON
+        spu.spu_id = ac.spu_id
+    LEFT JOIN
+      tb_warehouse AS w
+      ON
+        spu.warehouse_code = w.warehouse_code
+    LEFT JOIN
+      tb_user_collection AS uc
+      ON
+        spu.spu_id = uc.spu_id
+        AND uc.user_id = #{userId}
+  </select>
+
+  <!--杨康-->
+  <!--根据spuId&channel查询高返利spu信息 -->
+  <select id="getGoodsBySpuIdAndChannelGFL" resultType="com.qqskv3.data.goods.GoodsSpuInfoDTO">
+    SELECT
+      spu.spu_id AS spuId,
+      spu.spucode AS spucode,
+      spu.propertys AS propertys,
+      spu.spu_simple_desc AS spuSimpleDesc,
+      spu.spu_desc AS spuDesc,
+      spu.ferme AS ferme,
+      spu.rate AS rate,
+      spu.country_name AS countryName,
+      spu.all_stock_number AS allStockNumber,
+      spu.member_role AS memberRole,
+      w.warehouse_name AS warehouseName,
+      w.short_name AS shortName,
+      w.type AS warehouseType,
+      IFNULL(gcrSpu.spu_title,spu.spu_title)*0.01 AS spuTitle,
+      IFNULL(gcrSpu.spu_images_urls,spu.images_urls)*0.01 AS imagesUrls,
+      IFNULL(gcrSpu.spu_price_original,spu.original_price_min)*0.01 AS originalPriceMin,
+      IFNULL(gcrSpu.spu_price,spu.min_price)*0.01 AS minPrice,
+      IF(gcrSpu.offline_time > NOW(),1,0) AS isRelease
+    FROM
+			(
+				SELECT
+					gcr.spu_id,
+					gcr.spu_title,
+					gcr.spu_images_urls,
+					gcr.spu_price_original,
+					gcr.spu_price,
+					gcr.offline_time
+				FROM
+					tb_goods_channel_rebeta AS gcr
+				WHERE 1 = 1
+					AND gcr.spu_id = #{spuId}
+					AND gcr.sys_channel = #{channel}
+					AND gcr.type = 1
+			) AS gcrSpu
+		LEFT JOIN
+			tb_spu_manage AS spu
+				ON
+					gcrSpu.spu_id = spu.spu_id
+    LEFT JOIN
+      tb_warehouse AS w
+				ON
+					spu.warehouse_code = w.warehouse_code
+  </select>
+
+  <!--杨康-->
+  <!--高返利spu列表 -->
+  <select id="listGoodsSpuInfoGFL" resultType="com.qqskv3.data.goods.GoodsSpuInfoDTO">
+    SELECT
+      spu.spu_id AS spuId,
+      spu.spucode AS spucode,
+      spu.propertys AS propertys,
+      IFNULL(gcr.spu_title,spu.spu_title) AS spuTitle,
+      IFNULL(gcr.spu_images_urls,spu.images_urls) AS imagesUrls,
+      IFNULL(gcr.spu_price_original,spu.original_price_min)*0.01 AS originalPriceMin,
+      IFNULL(gcr.spu_price,spu.min_price)*0.01 AS minPrice
+    FROM
+      (
+        SELECT
+          a.spu_id,
+          a.spu_title,
+          a.spu_images_urls,
+          a.spu_price_original,
+          a.spu_price
+        FROM
+          tb_goods_channel_rebeta AS a
+        WHERE 1 = 1
+          AND a.sys_channel = #{channel}
+          AND a.type = 1
+          AND a.offline_time > NOW()
+          AND a.is_disable = 0
+          AND	a.Is_delete = 0
+        GROUP BY a.spu_id
+      )AS gcr
+    LEFT JOIN
+      tb_spu_manage AS spu
+      ON
+        gcr.spu_id = spu.spu_id
+  </select>
+
+  <!--杨康-->
+  <!--商品所属标签列表 -->
+  <select id="listTagBySpuIds" resultType="com.qqskv3.data.goods.GoodsTagDTO">
+    SELECT
+    tid.spu_id AS spuId,
+    tag.tag_name AS tagName,
+    tag.tag_imgurl AS tagImgurl
+    FROM
+    (
+    SELECT
+    st.spu_id,
+    st.tag_id
+    FROM
+    tb_spu_tag AS st
+    WHERE 1 = 1
+    AND st.spu_id in
+    <foreach item="item" index="index" collection="spuIdList" open="(" separator="," close=")">
+      #{spuIdList[${index}],jdbcType=VARCHAR}
+    </foreach>
+    ) AS tid
+    LEFT JOIN
+    tb_tag AS tag
+    ON
+    tid.tag_id = tag.tag_id
+    WHERE 1 = 1
+    AND tag.is_show = 20
+    ORDER BY
+    tag.tag_weight DESC
+  </select>
+
+  <select id="selectSpuIdByCid" resultType="int">
+		SELECT
+			spu_id
+		FROM
+			tb_spu_manage
+		WHERE
+		list_start_time &lt; NOW()
+  		AND list_stop_time &gt; NOW()
+		 AND spucode IN (
+			SELECT
+				spucode
+			FROM
+				tb_coupon_product
+			WHERE
+				coupon_id = #{couponId}
+			AND use_limit = 1
+		)
+		LIMIT #{start},#{num}
+	</select>
+  <!--搜索-->
+  <select id="searchSpuIdsByCondition" resultType="java.lang.Integer">
+    SELECT
+      spu_id
+    FROM
+      tb_spu_manage t1
+    INNER JOIN tb_product t2 ON t1.spucode = t2.spucode
+    WHERE
+      t1.is_search = 1
+    AND NOW() BETWEEN t1.list_start_time
+    AND t1.list_stop_time
+    AND t2.is_release = 1
+    AND (
+      t1.spu_title LIKE CONCAT('%',#{searchCondition},'%')
+      OR t1.spuname LIKE CONCAT('%',#{searchCondition},'%')
+      OR t1.spucode = #{searchCondition}
+      OR t1.hot_search LIKE CONCAT('%',#{searchCondition},'%')
+      OR t2.skucode = #{searchCondition}
+      OR t2.product_name LIKE CONCAT('%',#{searchCondition},'%')
+      OR t2.skuname LIKE CONCAT('%',#{searchCondition},'%')
+      OR t2.skuname LIKE CONCAT('%',#{searchCondition},'%')
+    )
+    GROUP BY
+      t1.spu_id
+    ORDER BY
+      t1.spu_weight,t1.spu_id
+    LIMIT #{start},#{num}
+  </select>
+  <select id="selectAllStandDownSpumanageId" resultType="java.lang.Integer">
+    SELECT tsm.spu_id FROM tb_spu_manage tsm
+    LEFT JOIN tb_product tbp ON tsm.spucode = tbp.spucode
+    WHERE tsm.list_start_time &lt; NOW()
+    AND tsm.list_stop_time > NOW()
+    GROUP BY tsm.spucode
+    HAVING SUM(tbp.is_release) = 0;
+  </select>
+</mapper>

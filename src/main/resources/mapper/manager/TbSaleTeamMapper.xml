@@ -1,0 +1,188 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.wyb.personal.bootes.mapper.manager.TbSaleTeamMapper">
+  <resultMap id="BaseResultMap" type="cn.wyb.personal.bootes.model.po.TbSaleTeamPO">
+    <id column="user_uuid" jdbcType="VARCHAR" property="userUuid" />
+    <result column="user_puuid" jdbcType="VARCHAR" property="userPuuid" />
+    <result column="user_level_id" jdbcType="INTEGER" property="userLevelId" />
+    <result column="user_level_name" jdbcType="VARCHAR" property="userLevelName" />
+    <result column="user_channel" jdbcType="VARCHAR" property="userChannel" />
+    <result column="user_union_id" jdbcType="VARCHAR" property="userUnionId" />
+    <result column="user_id" jdbcType="INTEGER" property="userId" />
+    <result column="user_pid" jdbcType="INTEGER" property="userPid" />
+    <result column="UPDATED_TIME" jdbcType="TIMESTAMP" property="updatedTime" />
+    <result column="CREATED_TIME" jdbcType="TIMESTAMP" property="createdTime" />
+    <result column="CREATED_BY" jdbcType="VARCHAR" property="createdBy" />
+    <result column="UPDATED_BY" jdbcType="VARCHAR" property="updatedBy" />
+    <result column="REVISION" jdbcType="INTEGER" property="revision" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    user_uuid, user_puuid, user_level_id, user_level_name, user_channel, user_union_id, 
+    user_id, user_pid, UPDATED_TIME, CREATED_TIME, CREATED_BY, UPDATED_BY, REVISION
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from tb_sale_team
+    where user_uuid = #{userUuid,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from tb_sale_team
+    where user_uuid = #{userUuid,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="cn.wyb.personal.bootes.model.po.TbSaleTeamPO">
+    insert into tb_sale_team (user_uuid, user_puuid, user_level_id, 
+      user_level_name, user_channel, user_union_id, 
+      user_id, user_pid, UPDATED_TIME, 
+      CREATED_TIME, CREATED_BY, UPDATED_BY, 
+      REVISION)
+    values (#{userUuid,jdbcType=VARCHAR}, #{userPuuid,jdbcType=VARCHAR}, #{userLevelId,jdbcType=INTEGER}, 
+      #{userLevelName,jdbcType=VARCHAR}, #{userChannel,jdbcType=VARCHAR}, #{userUnionId,jdbcType=VARCHAR}, 
+      #{userId,jdbcType=INTEGER}, #{userPid,jdbcType=INTEGER}, #{updatedTime,jdbcType=TIMESTAMP}, 
+      #{createdTime,jdbcType=TIMESTAMP}, #{createdBy,jdbcType=VARCHAR}, #{updatedBy,jdbcType=VARCHAR}, 
+      #{revision,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="cn.wyb.personal.bootes.model.po.TbSaleTeamPO">
+    insert into tb_sale_team
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="userUuid != null">
+        user_uuid,
+      </if>
+      <if test="userPuuid != null">
+        user_puuid,
+      </if>
+      <if test="userLevelId != null">
+        user_level_id,
+      </if>
+      <if test="userLevelName != null">
+        user_level_name,
+      </if>
+      <if test="userChannel != null">
+        user_channel,
+      </if>
+      <if test="userUnionId != null">
+        user_union_id,
+      </if>
+      <if test="userId != null">
+        user_id,
+      </if>
+      <if test="userPid != null">
+        user_pid,
+      </if>
+      <if test="updatedTime != null">
+        UPDATED_TIME,
+      </if>
+      <if test="createdTime != null">
+        CREATED_TIME,
+      </if>
+      <if test="createdBy != null">
+        CREATED_BY,
+      </if>
+      <if test="updatedBy != null">
+        UPDATED_BY,
+      </if>
+      <if test="revision != null">
+        REVISION,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="userUuid != null">
+        #{userUuid,jdbcType=VARCHAR},
+      </if>
+      <if test="userPuuid != null">
+        #{userPuuid,jdbcType=VARCHAR},
+      </if>
+      <if test="userLevelId != null">
+        #{userLevelId,jdbcType=INTEGER},
+      </if>
+      <if test="userLevelName != null">
+        #{userLevelName,jdbcType=VARCHAR},
+      </if>
+      <if test="userChannel != null">
+        #{userChannel,jdbcType=VARCHAR},
+      </if>
+      <if test="userUnionId != null">
+        #{userUnionId,jdbcType=VARCHAR},
+      </if>
+      <if test="userId != null">
+        #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="userPid != null">
+        #{userPid,jdbcType=INTEGER},
+      </if>
+      <if test="updatedTime != null">
+        #{updatedTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createdTime != null">
+        #{createdTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createdBy != null">
+        #{createdBy,jdbcType=VARCHAR},
+      </if>
+      <if test="updatedBy != null">
+        #{updatedBy,jdbcType=VARCHAR},
+      </if>
+      <if test="revision != null">
+        #{revision,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="cn.wyb.personal.bootes.model.po.TbSaleTeamPO">
+    update tb_sale_team
+    <set>
+      <if test="userPuuid != null">
+        user_puuid = #{userPuuid,jdbcType=VARCHAR},
+      </if>
+      <if test="userLevelId != null">
+        user_level_id = #{userLevelId,jdbcType=INTEGER},
+      </if>
+      <if test="userLevelName != null">
+        user_level_name = #{userLevelName,jdbcType=VARCHAR},
+      </if>
+      <if test="userChannel != null">
+        user_channel = #{userChannel,jdbcType=VARCHAR},
+      </if>
+      <if test="userUnionId != null">
+        user_union_id = #{userUnionId,jdbcType=VARCHAR},
+      </if>
+      <if test="userId != null">
+        user_id = #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="userPid != null">
+        user_pid = #{userPid,jdbcType=INTEGER},
+      </if>
+      <if test="updatedTime != null">
+        UPDATED_TIME = #{updatedTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createdTime != null">
+        CREATED_TIME = #{createdTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createdBy != null">
+        CREATED_BY = #{createdBy,jdbcType=VARCHAR},
+      </if>
+      <if test="updatedBy != null">
+        UPDATED_BY = #{updatedBy,jdbcType=VARCHAR},
+      </if>
+      <if test="revision != null">
+        REVISION = #{revision,jdbcType=INTEGER},
+      </if>
+    </set>
+    where user_uuid = #{userUuid,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="cn.wyb.personal.bootes.model.po.TbSaleTeamPO">
+    update tb_sale_team
+    set user_puuid = #{userPuuid,jdbcType=VARCHAR},
+      user_level_id = #{userLevelId,jdbcType=INTEGER},
+      user_level_name = #{userLevelName,jdbcType=VARCHAR},
+      user_channel = #{userChannel,jdbcType=VARCHAR},
+      user_union_id = #{userUnionId,jdbcType=VARCHAR},
+      user_id = #{userId,jdbcType=INTEGER},
+      user_pid = #{userPid,jdbcType=INTEGER},
+      UPDATED_TIME = #{updatedTime,jdbcType=TIMESTAMP},
+      CREATED_TIME = #{createdTime,jdbcType=TIMESTAMP},
+      CREATED_BY = #{createdBy,jdbcType=VARCHAR},
+      UPDATED_BY = #{updatedBy,jdbcType=VARCHAR},
+      REVISION = #{revision,jdbcType=INTEGER}
+    where user_uuid = #{userUuid,jdbcType=VARCHAR}
+  </update>
+</mapper>
